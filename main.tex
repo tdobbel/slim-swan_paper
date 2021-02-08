@@ -1,0 +1,98 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{url,hyperref,lineno,microtype,subcaption}
+\usepackage{color,tensor,multirow,siunitx}
+\usepackage[onehalfspacing]{setspace}
+\usepackage{makecell}
+\usepackage{textcomp}
+
+\renewcommand{\cellalign}{cl}
+
+\newcommand{\ds}{\displaystyle}
+\newcommand{\nl}{\ \\ }
+\newcommand{\ud}{\textrm{ d}}
+\newcommand{\bs}{\bigskip}
+
+\newcommand{\bu}{\mathbf{u}}
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\be}{\mathbf{e}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bk}{\mathbf{k}}
+\newcommand{\bn}{\mathbf{n}}
+\newcommand{\bR}{\mathbf{R}}
+
+\definecolor{red}{rgb}{1,0,0}
+\definecolor{blue}{rgb}{0,0,0.8}
+\definecolor{green}{rgb}{0,0.5,0}
+\newcommand{\emphc}[1]{\emph{\textcolor{red}{#1}}}
+\newcommand{\modif}[1]{\textcolor{red}{#1}}
+\newcommand{\hycom}{\textsc{hycom} }
+\newcommand{\slim}{\textsc{slim}\ }
+\newcommand{\ie}{{\it i.e.}\ }
+\newcommand{\eg}{{\it e.g.}\ }
+\newcommand{\edit}[1]{\textcolor{orange}{#1}}
+\linenumbers
+
+
+\title{Some nice title}
+\author{Thomas Dobbelaere, Emmanuel Hanert (and other co-authors to be determined)}
+
+\begin{document}
+
+\maketitle
+\begin{abstract}
+Some nice abstract
+\end{abstract}
+
+% === INTRODUCTION === %
+\section{Introduction}
+
+
+% === METHODS === %
+\section{Methods}
+
+\subsection{Wind and atmospheric pressure for Hurricane Irma}
+\subsection{Hydrodynamic model}
+\subsection{Wave model}
+\subsection{Coupled model}
+
+%%%%%%%%%%%%%%%%%%%
+% --- RESULTS --- %
+%%%%%%%%%%%%%%%%%%%
+\section{Results}
+
+\subsection{Validation}
+
+\subsection{Impact of waves}
+
+% === DISCUSSION === %
+\section{Discussion and conclusions}
+
+\section*{Conflict of Interest Statement}
+The authors declare that the research was conducted in the absence of any commercial or financial relationships that could be construed as a potential conflict of interest.
+
+\section*{Author Contributions}
+  
+\section*{Funding}
+
+\section*{Acknowledgments}
+Computational resources were provided by the Consortium des \'Equipements de Calcul Intensif (\textsc{c\'eci}), funded by the \textsc{f.r.s.-fnrs} under Grant No. 2.5020.11. Thomas Dobbelaere is a PhD student supported by the Fund for Research training in Industry and Agriculture (\textsc{FRIA}/\textsc{FNRS}).
+
+\section*{Supplementary Material}
+The Supplementary Material for this article is attached to the submitted document.
+
+% === BIBLIOGRAPHY === %
+% \bibliographystyle{frontiersinSCNS_ENG_HUMS} 
+\bibliographystyle{apalike}
+\bibliography{./biblio.bib}
+
+%%% Make sure to upload the bib file along with the tex file and PDF
+%%% Please see the test.bib file for some examples of references
+
+% \appendix
+% \section*{Appendix}
+% \renewcommand{\thesection}{A}
+% \setcounter{figure}{0}
+% \renewcommand{\thefigure}{\thesection\arabic{figure}}
+
+\end{document}
