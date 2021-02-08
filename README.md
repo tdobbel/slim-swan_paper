@@ -18,7 +18,7 @@
 ### Hydrodynamic model
 
 * Barotropic version of the unstructured-mesh ocean model SLIM ([www.slim-ocean.be](http://www.slim-ocean.be)). 
-* **[FIGURE]** Mesh of the computational domain with snapshots of simulated instantaneous currents and significant wave height on 2017-09-10 at 11:00:00. The mesh resolution ranges from 100 m in the Florida Keys to a maximum of 10 km offshore. 
+* **Fig 1.**: Mesh+snapshots
 * Term to account for atmospheric pressure gradient caused by hurricane central depression + Wind stress parameterization taking saturation of wind drag for high wind speed. 
 
 ### Wave model
@@ -41,16 +41,23 @@
 
 ### Validation
 
-* **[FIGURE] ** The atmospheric forcings have been validated with meteorological station observations at Vaca Key. The reconstructed atmospheric pressure and wind speed agree well with field measurements
+* Validation of wind and pressure fields &rarr; **Fig 2**
 
-* **[FIGURE] ** The sea-surface elevation produced by the coupled wave-current model agrees with SSE and current velocity observations at different stations. The fit is particularly good in the Florida Keys and in Naples, on the inner Florida shelf. The coupled model currents have been validated against current meter data on the inner Florida shelf. The current speed and direction during the hurricane agrees well with the observations.
-* **[FIGURE] ** The significant wave height produced by the coupled model has been compared to buoy measurements at 4 different stations. The timing and amplitude of the peak during the hurricane is correctly reproduced for all stations. For station 42036, the period and direction of the waves also agree well with observations.
+* Validation of hydrodynamic outputs (elevation+currents) &rarr; **Fig. 3**
+
+* Validation of wave outputs &rarr; **Fig. 4**
 
 ### Impact of waves
 
-* **[FIGURE] ** Maximum of the difference between SLIM and SLIM+SWAN currents speed between 2017-09-07 00:00:00 and 2017-09-13 00:00:00. The difference between the coupled and uncoupled model, which represents the effect of the wave-induced stress, can yield differences of 0.5 m/s in the simulated currents during the passage of the hurricane. SLIM+SWAN currents velocities are larger than the currents modeled by SLIM alone  
-* **[FIGURE]** We identified the zones with the largest differences in currents between SLIM and SLIM+SWAN during Irma. We then determined potential regions of origin for passive drifters that would reach these zones with large differences in current at the moment of the landfall of the hurricane in the Florida Keys. We then released passive virtual particles advected by SLIM and SLIM+SWAN currents from these origination regions and computed the distance between the centers of mass of the two clouds of particles through time.
-* **[FIGURE]** Comparison of passive drifters trajectories with SLIM+SWAN+Stokes drift vs. SLIM alone. A snapshot of the positions of the particles released from region 2 is shown after the passage of Irma in the Florida Keys. Particles advected by the currents of the coupled model tend to remain on the shelf while particles advected by SLIM alone are mostly transported along the shelf break.
-* The effect of waves on the currents is negligible before the passage of the hurricane. However, during the hurricane, it can produce differences of tens of km in a few hours in the position of particles transported by the currents. . 
+* Zones where difference in currents (with and without wave coupling) were the largest &rarr; **Fig. 5**
+
+* We identified the zones with the largest differences in currents between SLIM and SLIM+SWAN during Irma. We then determined potential regions of origin for passive drifters that would reach these zones with large differences in current at the moment of the landfall of the hurricane in the Florida Keys. We then released passive virtual particles advected by SLIM and SLIM+SWAN currents from these origination regions and computed the distance between the centers of mass of the two clouds of particles through time. &rarr; **Fig. 6**
+
+* Take-homme messages
+  * The effect of waves on the currents is negligible before the passage of the hurricane. However, during the hurricane, it can produce differences of tens of km in a few hours in the position of particles transported by the currents.
+  * When waves taken into account, particles stay on the shelf
+
 
 ## Discussion and conclusion
+
+* Impact of Hurricane/waves on larval connectivity
