@@ -1,13 +1,13 @@
 \documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage{url,hyperref,lineno,microtype,subcaption}
 \usepackage{color,tensor,multirow,siunitx}
 \usepackage[onehalfspacing]{setspace}
 \usepackage{makecell}
 \renewcommand{\cellalign}{cl}
 \renewcommand{\rmdefault}{phv}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage[round]{natbib}
 \usepackage{apalike}
@@ -69,7 +69,7 @@ In most hydrodynamic model studies, currents and waves are simulated separately.
 % === METHODS === %
 \section{Methods}
 \subsection{Wind and atmospheric pressure for Hurricane Irma}
-In order to capture the wind speed profile of Irma in our model, high-resolution H$^\ast$Wind \citep{powell1998hrd} wind fields were used. As these data represent 1-min averaged wind speeds, we multiplied them by a factor 0.93 to obtain 10-min averaged wind speeds \citep{harper2010guidelines}, more consistent with the time step of our model. Pressure fields were obtained from ECMWF ERA-5 datasets. However, the coarse resolution of ERA-5 caused the depression at the center of the hurricane to get smoothed out, leading to an underestimation of the pressure gradient in our model (see eq. \ref{eq:slim}). To better capture the central depression of Irma, we built a hybrid pressure field using the position and the minimal pressure of the core of the hurricane based on its track in the HURDAT 2 database \citep{landsea2013atlantic}. Based on this information, the hybrid pressure field was constructed by combining an idealized Holland pressure profile \citep{lin2012hurricane} within the radius of maximum wind speed of Irma \citep{knaff2018statistical} with ERA-5 pressure field. The transition between from the Holland profile to ECMWF data outside the radius of maximum wind speed data was performed using a smooth step function.
+In order to capture the wind speed profile of Irma in our model, high-resolution H$^\ast$Wind \citep{powell1998hrd} wind fields were used. As these data represent 1-min averaged wind speeds, we multiplied them by a factor 0.93 to obtain 10-min averaged wind speeds \citep{harper2010guidelines}, more consistent with the time step of our model. Furthermore, H*Wind wind profiles did not cover the whole model extent during the hurricane and were thus blended within coarser wind field extracted from ECMWF ERA-5 datasets. Pressure fields of Irma were also constructed using ERA-5 data. However, the coarse resolution of the data set caused the depression at the center of the hurricane to get smoothed out, leading to an underestimation of the pressure gradient in our model (see eq. \ref{eq:slim}). To better capture the central depression of Irma, we built a hybrid pressure field using the position and the minimal pressure of the core of the hurricane based on its track in the HURDAT 2 database \citep{landsea2013atlantic}. Based on this information, the hybrid pressure field was constructed by combining an idealized Holland pressure profile \citep{lin2012hurricane} within the radius of maximum wind speed of Irma \citep{knaff2018statistical} with ERA-5 pressure field. The transition between from the Holland profile to ECMWF data outside the radius of maximum wind speed data was performed using a smooth step function.
 
 \subsection{Hydrodynamic model}
 Ocean currents generated during hurricane Irma in the Florida Reef Tract (FRT) were modelled using the unstructured-mesh depth-integrated coast ocean model \slim\footnote{\url{https://www.slim-ocean.be}}. The model mesh covers an area similar to the model extent of \cite{dobbelaere2020coupled}, that includes the FRT but also the Florida Strait and part of the Gulf of Mexico (Figure \ref{fig:mesh}). However, this area has been slightly extended northeastward and westward in order to include the location of buoys for wave outputs validation. Furthermore, in order to withstand potential cell drying due to storm conditions in this study, we used the conservative mode of SLIM with wetting-drying, whose equations write:
@@ -95,7 +95,7 @@ Waves were modelled using parallel unstructured \swan \citep{booij1999third} on 
 \begin{equation}
     \dfrac{\partial N}{\partial t} + \nabla_\mathbf{x}\cdot[(\mathbf{c}_g+\mathbf{u})N] + \dfrac{\partial }{\partial \theta}[c_\theta N] + \dfrac{\partial}{\partial \sigma}[c_\sigma N] = \dfrac{S_{in}+S_{ds}+S_{nl}}{\sigma} \label{eq:swan}
 \end{equation}
-where $N$ is the wave action density; $\theta$ is the wave propagation direction; $\sigma$ is the wave relative frequency; $\mathbf{c}_g$ is the wave group velocity, $\mathbf{u}$ is \slim depth-averaged current velocity; $c_\theta$ and $c_\sigma$ are the propagation velocities in spectral space due to refraction and shifting in frequency due to variations in depth and currents; and $S_{in}$, $S_{ds}$, and $S_{nl}$ respectively represent wave growth by wind, wave decay and nonlinear transfers of wave energy through interactions between triplets and quadruplets. Spectra were discretized with 48 direction bins and 50 frequency bins logarithmically distributed from 0.3 to 2 Hz. Exponential wind growth was parameterized using the formulation of \cite{janssen1991quasi}, while dissipations by whitecapping and bottom dissipations followed the formulations of \cite{komen1984existence} and \cite{madsen1989spectral} respectively. Coefficients for exponential wind growth and whitecapping parameterizations were based on the results of \cite{siadatmousavi2011evaluation}. Finally, wave boundary conditions were derived from WAVEWATCH III \citep{tolman2009user} spectral outputs at buoy locations. Depth-averaged Stokes drift was also computed by SWAN using the following formula:
+where $N=E/\sigma$ is the wave action density; $\theta$ is the wave propagation direction; $\sigma$ is the wave relative frequency; $\mathbf{c}_g$ is the wave group velocity, $\mathbf{u}$ is \slim depth-averaged current velocity; $c_\theta$ and $c_\sigma$ are the propagation velocities in spectral space due to refraction and shifting in frequency due to variations in depth and currents; and $S_{in}$, $S_{ds}$, and $S_{nl}$ respectively represent wave growth by wind, wave decay and nonlinear transfers of wave energy through interactions between triplets and quadruplets. Spectra were discretized with 48 direction bins and 50 frequency bins logarithmically distributed from 0.3 to 2 Hz. Exponential wind growth was parameterized using the formulation of \cite{janssen1991quasi}, while dissipations by whitecapping and bottom dissipations followed the formulations of \cite{komen1984existence} and \cite{madsen1989spectral} respectively. Coefficients for exponential wind growth and whitecapping parameterizations were based on the results of \cite{siadatmousavi2011evaluation}. Finally, wave boundary conditions were derived from WAVEWATCH III \citep{tolman2009user} spectral outputs at buoy locations. Depth-averaged Stokes drift was also computed by SWAN using the following formula:
 \begin{equation}
     \mathbf{u}_{s} = \int_0^{2\pi}\int_0^{+\infty} \dfrac{\sigma^3}{h\tanh(2kh)}E(\sigma,\theta)(\cos\theta, \sin(\theta))d\sigma d\theta
 \end{equation}
@@ -112,12 +112,24 @@ The coupling between \slim and \swan is illustrated in Figure \ref{fig:coupling}
 
 \subsection{Comparison of particle trajectories}
 
+To assess the impact of the wave coupling on the modelled currents during hurricane Irma, we compared the trajectories of virtual particles driven by currents produced by \slim alone and \slim+\swan simulations in the Florida Keys. First, we identified the areas where the differences between the modelled currents were the largest. Then, we determined the potential origination regions of particles reaching these areas on the passage of the hurricane through the Florida Keys using backtracking methods \citep{dobbelaerereport}. These regions are highlighted by the 4 release regions of Fig. \ref{fig:traj}. Finally, particles were released from these four regions and advected by currents produced by the coupled and uncoupled models. At each time step, the center of mass of the modelled particle clouds were computed. The distance between these centers of mass was used as a measure of the impact of the wind-generated wave coupling on the modelled current in the Florida Keys during hurricane Irma.
+
 %%%%%%%%%%%%%%%%%%%
 % --- RESULTS --- %
 %%%%%%%%%%%%%%%%%%%
 \section{Results}
 
 \subsection{Validation}
+
+Comparisons of the H*Wind wind and hybrid pressure fields with station measurements at Vaca Key are shown in Fig. \ref{fig:forcings}. The observed pressure at the station is well reproduced by the reconstructed hybrid pressure field. H*Wind profile agree well with field measurements as well despite a slight overestimation of the peak wind speed.
+
+\textcolor{blue}{QUESTION: Should I use quantitative results such as RMSE ?}
+
+To validate the hydrodynamic outputs of the coupled wave-current model, the computed sea surface elevation was compared with tide gauge measurements on the Eastern and Western coasts of Florida as well as in the Florida Keys. Figure \ref{fig:hydro} shows a good fit between simulated and measured elevation at all stations, where the model succeeds in reproducing the observed tide surge caused by the passage of the Irma. Modelled currents were validated against ADCP data at moorings C10, C12 and C13, respectively located at the 25, 50, and 50 m isobaths of the inner Florida shelf \citep{liu2020impacts}. Measured and modelled depth-averaged currents at station C10 are shown in Fig. \ref{fig:hydro}. The current speed and direction during the hurricane agree well with observations.
+
+The wave parameters computed by the coupled model were validated against field measurements as well. Validation data was extracted from four buoys, two in the Eastern coast Florida and two in the inner shelf. Results of Fig. \ref{fig:waves} show that the model reproduces correctly the timing and amplitude of the significant wave height peak during the hurricane for all four stations. Modelled wave period and direction are in good agreement with measurement as well, as shown for station 42036. 
+
+
 \begin{figure}
     \centering
     \includegraphics[width=.95\textwidth]{fig/validation_met.png}
