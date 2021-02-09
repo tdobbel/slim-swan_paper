@@ -48,14 +48,15 @@
 \linenumbers
 
 
-\title{Some nice title}
-\author{Thomas Dobbelaere, Emmanuel Hanert (and other co-authors to be determined)}
+\title{Development of a coupled current-wave model to assess the impact of a hurricane on particle transport}
+\author{Thomas Dobbelaere, Emmanuel Hanert}
 
 \begin{document}
 
 \maketitle
 \begin{abstract}
-Some nice abstract
+In most hydrodynamic model studies, currents and waves are simulated separately. This is especially true for the simulation of passive drifters, whose trajectories are often computed based solely on currents. Although this simplification holds for most situations, as the force exerted by waves on currents can be neglected in fair weather conditions, it may lead to significant errors in storm conditions, during which local currents are strongly influenced by wind-generated waves. In this study,current-wave interactions in heavy-wind conditions  are studied by coupling the unstructured-mesh hydrodynamic model SLIM with the wave model SWAN in the Florida Reef Tract during Hurricane Irma (Sep. 2017). This coupled model successfully reproduced both the observed wave behavior and storm surge during the hurricane. The modeled currents were then used to simulate the trajectories of passive drifters during the passage of the hurricane. Our results show that taking wave force into account induces  variations of up 1 m/s in modelled currents on the continental shelf break as well as in the vicinity of  reefs and islands. Wave-current interactions can therefore strongly modify  the transport of drifting material, such as sediments and coral larvae, during heavy-wind events. That should in particular affect connectivity modeling studies since coral mass spawning events tend to occur during the hurricane season in the Caribbean.
+
 \end{abstract}
 
 % === INTRODUCTION === %
@@ -89,17 +90,11 @@ The mesh resolution depended only on the distance to coastlines and reefs, bathy
     \label{fig:mesh}
 \end{figure}
 \subsection{Wave model}
-Waves were modelled using the parallel unstructured SWAN \citep{booij1999third}
+Waves were modelled using parallel unstructured SWAN \citep{booij1999third} on the same mesh as SLIM. This model solves the action balance equation, which reads \citep{mei1989applied}:
 \begin{equation}
     \dfrac{\partial N}{\partial t} + \nabla_\mathbf{x}\cdot[(\mathbf{c}_g+\mathbf{u})N] + \dfrac{\partial }{\partial \theta}[c_\theta N] + \dfrac{\partial}{\partial \sigma}[c_\sigma N] = \dfrac{S_{in}+S_{ds}+S_{nl}}{\sigma}
 \end{equation}
-\begin{itemize}
-    \item Exponential growth by wind by \cite{janssen1991quasi}
-    \item Whitecapping formulation by \cite{komen1984existence}
-    \item Bottom dissipation according to \cite{madsen1989spectral}
-    \item Same mesh as SLIM
-    \item For wave boundary conditions, spectra from WW3 \citep{tolman2009user}
-\end{itemize}
+where $N$ is the wave action density; $\theta$ is the wave propagation direction; $\sigma$ is the wave relative frequency; $\mathbf{c}_g$ is the wave group velocity, $\mathbf{u}$ is SLIM depth-averaged current velocity; $c_\theta$ and $c_\sigma$ are the propagation velocities in spectral space due to refraction and shifting in frequency due to variations in depth and currents; and $S_{in}$, $S_{ds}$, and $S_{ds}$ respectively represent wave growth by wind, wave decay and nonlinear transfers of wave energy through interactions between triplets and quadruplets. Spectra were discretized with 48 direction bins and 50 frequency bins logarithmically distributed from 0.3 to 2 Hz. Exponential wind growth was parameterized using the formulation of \cite{janssen1991quasi}, while dissipations by whitecapping and bottom dissipations followed the formulations of \cite{komen1984existence} and \cite{madsen1989spectral} respectively. Coefficients for exponential wind growth and whitecapping parameterizations were based on the results of \cite{siadatmousavi2011evaluation}. Finally, wave boundary conditions were derived from WAVEWATCH III \citep{tolman2009user} spectral outputs at buoy locations.
 \subsection{Coupled model}
 Express $z_0$ for Madsen bottom friction from Manning dissipation used in SLIM obtained following the methodology of \cite{dietrich2011hurricane}
 
