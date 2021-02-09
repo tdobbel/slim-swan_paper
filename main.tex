@@ -41,12 +41,15 @@
 \newcommand{\modif}[1]{\textcolor{red}{#1}}
 \newcommand{\hycom}{\textsc{hycom} }
 \newcommand{\slim}{\textsc{slim}\ }
+\newcommand{\swan}{\textsc{swan}\ }
 \newcommand{\ie}{{\it i.e.}\ }
 \newcommand{\eg}{{\it e.g.}\ }
 \newcommand{\edit}[1]{\textcolor{orange}{#1}}
 \newcommand{\UV}{\mathbf{U}}
 \linenumbers
-
+\let\temp\rmdefault
+\usepackage{mathpazo}
+\let\rmdefault\temp
 
 \title{Development of a coupled current-wave model to assess the impact of a hurricane on particle transport}
 \author{Thomas Dobbelaere, Emmanuel Hanert}
@@ -55,7 +58,7 @@
 
 \maketitle
 \begin{abstract}
-In most hydrodynamic model studies, currents and waves are simulated separately. This is especially true for the simulation of passive drifters, whose trajectories are often computed based solely on currents. Although this simplification holds for most situations, as the force exerted by waves on currents can be neglected in fair weather conditions, it may lead to significant errors in storm conditions, during which local currents are strongly influenced by wind-generated waves. In this study,current-wave interactions in heavy-wind conditions  are studied by coupling the unstructured-mesh hydrodynamic model SLIM with the wave model SWAN in the Florida Reef Tract during Hurricane Irma (Sep. 2017). This coupled model successfully reproduced both the observed wave behavior and storm surge during the hurricane. The modeled currents were then used to simulate the trajectories of passive drifters during the passage of the hurricane. Our results show that taking wave force into account induces  variations of up 1 m/s in modelled currents on the continental shelf break as well as in the vicinity of  reefs and islands. Wave-current interactions can therefore strongly modify  the transport of drifting material, such as sediments and coral larvae, during heavy-wind events. That should in particular affect connectivity modeling studies since coral mass spawning events tend to occur during the hurricane season in the Caribbean.
+In most hydrodynamic model studies, currents and waves are simulated separately. This is especially true for the simulation of passive drifters, whose trajectories are often computed based solely on currents. Although this simplification holds for most situations, as the force exerted by waves on currents can be neglected in fair weather conditions, it may lead to significant errors in storm conditions, during which local currents are strongly influenced by wind-generated waves. In this study,current-wave interactions in heavy-wind conditions  are studied by coupling the unstructured-mesh hydrodynamic model \slim with the wave model \swan in the Florida Reef Tract during Hurricane Irma (Sep. 2017). This coupled model successfully reproduced both the observed wave behavior and storm surge during the hurricane. The modeled currents were then used to simulate the trajectories of passive drifters during the passage of the hurricane. Our results show that taking wave force into account induces  variations of up 1 m/s in modelled currents on the continental shelf break as well as in the vicinity of  reefs and islands. Wave-current interactions can therefore strongly modify  the transport of drifting material, such as sediments and coral larvae, during heavy-wind events. That should in particular affect connectivity modeling studies since coral mass spawning events tend to occur during the hurricane season in the Caribbean.
 
 \end{abstract}
 
@@ -66,20 +69,18 @@ In most hydrodynamic model studies, currents and waves are simulated separately.
 % === METHODS === %
 \section{Methods}
 \subsection{Wind and atmospheric pressure for Hurricane Irma}
-\begin{itemize}
-    \item Reduction of wind speed according to \cite{harper2010guidelines}
-    \item HURDAT 2 \citep{landsea2013atlantic} for hurricance pressure with radius of maximum wind speed according to \cite{knaff2018statistical} using Holland pressure profile \citep{lin2012hurricane}.
-\end{itemize}
+In order to capture the wind speed profile of Irma in our model, high-resolution H$^\ast$Wind \citep{powell1998hrd} wind fields were used. As these data represent 1-min averaged wind speeds, we multiplied them by a factor 0.93 to obtain 10-min averaged wind speeds \citep{harper2010guidelines}, more consistent with the time step of our model. Pressure fields were obtained from ECMWF ERA-5 datasets. However, the coarse resolution of ERA-5 caused the depression at the center of the hurricane to get smoothed out, leading to an underestimation of the pressure gradient in our model (see eq. \ref{eq:slim}). To better capture the central depression of Irma, we built a hybrid pressure field using the position and the minimal pressure of the core of the hurricane based on its track in the HURDAT 2 database \citep{landsea2013atlantic}. Based on this information, the hybrid pressure field was constructed by combining an idealized Holland pressure profile \citep{lin2012hurricane} within the radius of maximum wind speed of Irma \citep{knaff2018statistical} with ERA-5 pressure field. The transition between from the Holland profile to ECMWF data outside the radius of maximum wind speed data was performed using a smooth step function.
+
 \subsection{Hydrodynamic model}
-Ocean currents generated during hurricane Irma in the Florida Reef Tract (FRT) were modelled using the unstructured-mesh depth-integrated coast ocean model SLIM\footnote{\url{https://www.slim-ocean.be}}. The model mesh covers an area similar to the model extent of \cite{dobbelaere2020coupled}, that includes the FRT but also the Florida Strait and part of the Gulf of Mexico (Figure \ref{fig:mesh}). However, this area has been slightly extended northeastward and westward in order to include the location of buoys for wave outputs validation. Furthermore, in order to withstand potential cell drying due to storm conditions in this study, we used the conservative mode of SLIM with wetting-drying, whose equations write:
+Ocean currents generated during hurricane Irma in the Florida Reef Tract (FRT) were modelled using the unstructured-mesh depth-integrated coast ocean model \slim\footnote{\url{https://www.slim-ocean.be}}. The model mesh covers an area similar to the model extent of \cite{dobbelaere2020coupled}, that includes the FRT but also the Florida Strait and part of the Gulf of Mexico (Figure \ref{fig:mesh}). However, this area has been slightly extended northeastward and westward in order to include the location of buoys for wave outputs validation. Furthermore, in order to withstand potential cell drying due to storm conditions in this study, we used the conservative mode of SLIM with wetting-drying, whose equations write:
 \begin{equation}
     \begin{split}
         \dfrac{\partial H}{\partial t} +\nabla\cdot(\UV) =& ~0 \\
         \dfrac{\partial \UV}{\partial t}  + \nabla\cdot\left(\dfrac{\UV\UV}{H}\right) =& -f\mathbf{e}_z \times \UV + \alpha gH\nabla(H-h) - \dfrac{1}{\rho}\nabla p_\text{atm} + \dfrac{1}{\rho}\text{\boldmath$\tau$}_s \\
          &+\nabla\cdot(\nu\nabla\UV) - \dfrac{C_b}{H^2}|\UV|\UV + \gamma(\UV_\ast-\UV)
-    \end{split}
+    \end{split} \label{eq:slim}
 \end{equation}
-where $H$ is the water column height and $\UV$ is the depth-averaged transport; $f$ is the Coriolis coefficient; $g$ is the gravitational acceleration; $h$ is the bathymetry; $\alpha$ is a coefficient stating whether the mesh element is wet ($\alpha=1$) or dry ($\alpha=0$); $\nu$  is the viscosity; $C_b$ is the bottom drag coefficient; $\nabla p_\text{atm}$ is the atmospheric pressure gradient; {\boldmath$\tau$}$_s$ is the surface stress due to wind; and $\gamma$ is a relaxation coefficient towards a reference transport $\UV_\ast$. As in \cite{frys2020fine} and \cite{dobbelaere2020coupled}, SLIM currents were relaxed towards HYCOM \citep{chassignet2007hycom} in regions where the water depth exceeds a given threshold. At very high wind speeds, the white cap is blown off the crest of the waves, which generates a layer of droplets that acts as a slip layer for the winds at the ocean-atmosphere interface \citep{holthuijsen2012wind}. This causes a saturation of the wind drag coefficient for strong winds \citep{donelan2004limiting,powell2003reduced}. To account for the impact of this saturation on the surface wind stress in our model, we implemented the wind drag parameterization of \cite{moon2007physics}.
+where $H$ is the water column height and $\UV$ is the depth-averaged transport; $f$ is the Coriolis coefficient; $g$ is the gravitational acceleration; $h$ is the bathymetry; $\alpha$ is a coefficient stating whether the mesh element is wet ($\alpha=1$) or dry ($\alpha=0$); $\nu$  is the viscosity; $C_b$ is the bottom drag coefficient; $\nabla p_\text{atm}$ is the atmospheric pressure gradient; {\boldmath$\tau$}$_s$ is the surface stress due to wind; and $\gamma$ is a relaxation coefficient towards a reference transport $\UV_\ast$. As in \cite{frys2020fine} and \cite{dobbelaere2020coupled}, \slim currents were relaxed towards \hycom \citep{chassignet2007hycom} in regions where the water depth exceeds a given threshold. At very high wind speeds, the white cap is blown off the crest of the waves, which generates a layer of droplets that acts as a slip layer for the winds at the ocean-atmosphere interface \citep{holthuijsen2012wind}. This causes a saturation of the wind drag coefficient for strong winds \citep{donelan2004limiting,powell2003reduced}. To account for the impact of this saturation on the surface wind stress in our model, we implemented the wind drag parameterization of \cite{moon2007physics}.
 
 The mesh resolution depended only on the distance to coastlines and reefs, bathymetry and bathymetry gradient in order to satisfy SWAN refinement criterion $h/A\geq a$, where $h$ is the water depth and $A$ is the element area. The mesh was generated using the Python library seamsh\footnote{\url{https://pypi.org/project/seamsh/}}, based on the the open-source mesh generator GMSH \citep{geuzaine2009gmsh} and is composed of approximately 7.7 $\times$ 10$^5$ elements. The coarsest elements, far away from the FRT, had a characteristic length size of about 5 km. Figure \ref{fig:mesh} depicts how a 100-m spatial resolution mesh simulated fine-scale details of the ocean currents and significant wave height generated by hurricane Irma in the Florida Keys.
 
@@ -90,13 +91,26 @@ The mesh resolution depended only on the distance to coastlines and reefs, bathy
     \label{fig:mesh}
 \end{figure}
 \subsection{Wave model}
-Waves were modelled using parallel unstructured SWAN \citep{booij1999third} on the same mesh as SLIM. This model solves the action balance equation, which reads \citep{mei1989applied}:
+Waves were modelled using parallel unstructured \swan \citep{booij1999third} on the same mesh as \slim. This model solves the action balance equation, which reads \citep{mei1989applied}:
 \begin{equation}
-    \dfrac{\partial N}{\partial t} + \nabla_\mathbf{x}\cdot[(\mathbf{c}_g+\mathbf{u})N] + \dfrac{\partial }{\partial \theta}[c_\theta N] + \dfrac{\partial}{\partial \sigma}[c_\sigma N] = \dfrac{S_{in}+S_{ds}+S_{nl}}{\sigma}
+    \dfrac{\partial N}{\partial t} + \nabla_\mathbf{x}\cdot[(\mathbf{c}_g+\mathbf{u})N] + \dfrac{\partial }{\partial \theta}[c_\theta N] + \dfrac{\partial}{\partial \sigma}[c_\sigma N] = \dfrac{S_{in}+S_{ds}+S_{nl}}{\sigma} \label{eq:swan}
 \end{equation}
-where $N$ is the wave action density; $\theta$ is the wave propagation direction; $\sigma$ is the wave relative frequency; $\mathbf{c}_g$ is the wave group velocity, $\mathbf{u}$ is SLIM depth-averaged current velocity; $c_\theta$ and $c_\sigma$ are the propagation velocities in spectral space due to refraction and shifting in frequency due to variations in depth and currents; and $S_{in}$, $S_{ds}$, and $S_{ds}$ respectively represent wave growth by wind, wave decay and nonlinear transfers of wave energy through interactions between triplets and quadruplets. Spectra were discretized with 48 direction bins and 50 frequency bins logarithmically distributed from 0.3 to 2 Hz. Exponential wind growth was parameterized using the formulation of \cite{janssen1991quasi}, while dissipations by whitecapping and bottom dissipations followed the formulations of \cite{komen1984existence} and \cite{madsen1989spectral} respectively. Coefficients for exponential wind growth and whitecapping parameterizations were based on the results of \cite{siadatmousavi2011evaluation}. Finally, wave boundary conditions were derived from WAVEWATCH III \citep{tolman2009user} spectral outputs at buoy locations.
+where $N$ is the wave action density; $\theta$ is the wave propagation direction; $\sigma$ is the wave relative frequency; $\mathbf{c}_g$ is the wave group velocity, $\mathbf{u}$ is \slim depth-averaged current velocity; $c_\theta$ and $c_\sigma$ are the propagation velocities in spectral space due to refraction and shifting in frequency due to variations in depth and currents; and $S_{in}$, $S_{ds}$, and $S_{nl}$ respectively represent wave growth by wind, wave decay and nonlinear transfers of wave energy through interactions between triplets and quadruplets. Spectra were discretized with 48 direction bins and 50 frequency bins logarithmically distributed from 0.3 to 2 Hz. Exponential wind growth was parameterized using the formulation of \cite{janssen1991quasi}, while dissipations by whitecapping and bottom dissipations followed the formulations of \cite{komen1984existence} and \cite{madsen1989spectral} respectively. Coefficients for exponential wind growth and whitecapping parameterizations were based on the results of \cite{siadatmousavi2011evaluation}. Finally, wave boundary conditions were derived from WAVEWATCH III \citep{tolman2009user} spectral outputs at buoy locations. Depth-averaged Stokes drift was also computed by SWAN using the following formula:
+\begin{equation}
+    \mathbf{u}_{s} = \int_0^{2\pi}\int_0^{+\infty} \dfrac{\sigma^3}{h\tanh(2kh)}E(\sigma,\theta)(\cos\theta, \sin(\theta))d\sigma d\theta
+\end{equation}
+where $k$ is the norm of the wave vector; $h$ is the water depth; and $E(\sigma,\theta)$ is the wave energy density.
+
 \subsection{Coupled model}
-Express $z_0$ for Madsen bottom friction from Manning dissipation used in SLIM obtained following the methodology of \cite{dietrich2011hurricane}
+The coupling between \slim and \swan is illustrated in Figure \ref{fig:coupling}. The two models are run consecutively at each time step. First, \slim computes the sea surface elevation $\eta$ and depth-averaged current velocity $\mathbf{u}=(u,v)$. These quantities are transferred to \swan to update the model water depth as well as the second term of equation \ref{eq:swan} governing wave energy propagation in the geographic space. Moreover, in order for the two model to have consistent bottom dissipation parameterizations, \slim bottom drag coefficient is transformed into a roughness length $z_0$ following the methodology of \cite{dietrich2011hurricane}. This roughness length is then converted into Madsen's bottom dissipation term in \swan. \swan then produces the wave-induced force on current {\boldmath$\tau$}$_\text{wave}$ by computing the wave radiation stress gradient. This quantity is used to update the value of the surface stress {\boldmath$\tau$}$_s$ in equation \ref{eq:slim}, that now becomes the sum of wind and wave-induced forces {\boldmath$\tau$}$_s=${\boldmath$\tau$}$_\text{wind}+${\boldmath$\tau$}$_\text{wave}$.
+\begin{figure}
+    \centering
+    \includegraphics[width=.95\textwidth]{fig/coupling.png}
+    \caption{Schematic illustration of the coupled \slim+\swan model.}
+    \label{fig:coupling}
+\end{figure}
+
+\subsection{Comparison of particle trajectories}
 
 %%%%%%%%%%%%%%%%%%%
 % --- RESULTS --- %

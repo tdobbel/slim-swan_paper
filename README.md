@@ -33,25 +33,27 @@
 
 ### Coupled model
 
-- Roughness length for Madsen wave bottom dissipation is derived from SLIM bottom dissipation coefficient
+- **Fig 2.** Roughness length for Madsen wave bottom dissipation is derived from SLIM bottom dissipation coefficient
 
   $z_0=H\exp\left[-\left(1+\dfrac{\kappa}{\sqrt{C_b}}\right)\right]$
+
+## Comparison of trajectories
 
 ## Results
 
 ### Validation
 
-* Validation of wind and pressure fields &rarr; **Fig 2**
+* Validation of wind and pressure fields &rarr; **Fig 3**
 
-* Validation of hydrodynamic outputs (elevation+currents) &rarr; **Fig. 3**
+* Validation of hydrodynamic outputs (elevation+currents) &rarr; **Fig. 4**
 
-* Validation of wave outputs &rarr; **Fig. 4**
+* Validation of wave outputs &rarr; **Fig. 5**
 
 ### Impact of waves
 
-* Zones where difference in currents (with and without wave coupling) were the largest &rarr; **Fig. 5**
+* Zones where difference in currents (with and without wave coupling) were the largest &rarr; **Fig. 6**
 
-* We identified the zones with the largest differences in currents between SLIM and SLIM+SWAN during Irma. We then determined potential regions of origin for passive drifters that would reach these zones with large differences in current at the moment of the landfall of the hurricane in the Florida Keys. We then released passive virtual particles advected by SLIM and SLIM+SWAN currents from these origination regions and computed the distance between the centers of mass of the two clouds of particles through time. &rarr; **Fig. 6**
+* We identified the zones with the largest differences in currents between SLIM and SLIM+SWAN during Irma. We then determined potential regions of origin for passive drifters that would reach these zones with large differences in current at the moment of the landfall of the hurricane in the Florida Keys. We then released passive virtual particles advected by SLIM and SLIM+SWAN currents from these origination regions and computed the distance between the centers of mass of the two clouds of particles through time. &rarr; **Fig. 7**
 
 * Take-homme messages
   * The effect of waves on the currents is negligible before the passage of the hurricane. However, during the hurricane, it can produce differences of tens of km in a few hours in the position of particles transported by the currents.
