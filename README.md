@@ -76,7 +76,12 @@ Paragraph 2: Validation of hydro
 
 **Fig. 4**: Modelled SSE & currents vs. measurements
 
-* Validation of wave outputs &rarr; **Fig. 5**
+Paragraph 3: Wave validation
+1. Good agreement with observation although SWH is underestimated on the east shelf
+2. Better fit on the WFS explained by parameters used
+3. Use of parameters calibrated for GoM reasonable as we focus on WFS
+
+**Fig. 4**: Modelled wave parameters vs. measurements
 
 ### Impact of waves
 
