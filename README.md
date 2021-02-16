@@ -2,62 +2,96 @@
 
 ## Introduction
 
-* Importance of interactions between waves and currents in storm conditions
-* Transports phenomenons important in region of the FRT: larvae and oil (cite Matthieu's paper) &rArr; link to connectivity study (reproduction period of coral during season of hurricanes)
+Paragraph 1: wave-current interactions
+1. Wave-current interactions play an important role in coastal areas
+2. These interactions are complex and require a coupled model
+3. Wave-currents interactions are more important in storm conditions 
+4. Hurricane intensity and frequency in the GoM is expected to increase in the future &rArr; necessary to be able to model them accurately
+
+Paragraph 2: lagrangian models
+1. Lagrangian models are often used to model the transport of sediments, pollutants, larvae, etc.
+2. Most of these models don't takes wave-current interactions into account (only Stokes drift)
+3. This might generate significant errors under storm conditions &rArr; case study of Irma
+
+Paragraph 3: Structure of the paper
 
 ## Methods
 
+## Study area and data
+
+Paragraph 1: Presentation of South Florida
+
+Paragraph 2: Presentation of tide gauges, moorings and buoys
+
+**Fig. 1**: Mesh + Hurricane track + bathymetry + measurement stations + zoom
+
 ### Wind and atmospheric pressure for Hurricane Irma
 
-- Wind speeds are obtained from H*Wind field data
-
-- Pressure field is obtained by combining ECMWF model outputs with Holland profile based on HURDAT hurricane track
-
-  $p(r) = p_c + (101330-p_c)\exp(-\frac{r_\text{mws}}{r})$
+Paragraph 1
+1. Some "fun facts" about Irma
+2. Wind speeds obtained from HWind field
+3. Construction of pressure field: ECMWF ERA-5 + Holland field using HURDAT 2
 
 ### Hydrodynamic model
 
-* Barotropic version of the unstructured-mesh ocean model SLIM ([www.slim-ocean.be](http://www.slim-ocean.be)). 
-* **Fig 1.**: Mesh+snapshots
-* Term to account for atmospheric pressure gradient caused by hurricane central depression + Wind stress parameterization taking saturation of wind drag for high wind speed. 
+Paragraph 1
+1. Description of model equations
+2. Saturation of wind drag coefficient
+
+Paragraph 2: Mesh 
 
 ### Wave model
 
-- Parallel Unstructured SWAN
-  - $S_{in}$: Janssen parameterization for wind energy input term
-  - $S_{ds}$: whitecapping (Komen) + bottom dissipation (Madsen) + depth-induced wave breaking
-  -  $S_{nl}$: quadruplets interactions
-
-- Wave forcings from WaveWatch III
-- Depth-averaged Stokes drift can be computed by SWAN outputs
+Paragraph 1
+1. Description of model equations
+2. Paramaterizations of different energy sources and sinks
+3. Boundary conditions
+4. Stokes drift
 
 ### Coupled model
 
-- **Fig 2.** Roughness length for Madsen wave bottom dissipation is derived from SLIM bottom dissipation coefficient
+Paragraph 1: To be developed 
 
-  $z_0=H\exp\left[-\left(1+\dfrac{\kappa}{\sqrt{C_b}}\right)\right]$
+**Fig 2.**: Model coupling (to be improved)
 
 ## Comparison of trajectories
+
+Might have to rewrite this section
 
 ## Results
 
 ### Validation
 
-* Validation of wind and pressure fields &rarr; **Fig 3**
+Paragraph 1: Validation of atmospheric forcings
+1. Constructed pressure field better at reproducing storm depression than ECMWF
+2. Both HWind and ECMWF agree with observation but better timing/width of peak with HWind  
 
-* Validation of hydrodynamic outputs (elevation+currents) &rarr; **Fig. 4**
+**Fig 3**: Reconstructed fields vs. measurements vs. ECMWF 
+
+Paragraph 2: Validation of hydro
+1. SSE agrees with observations and very good at reproducing storm surge
+2. Fit especially good at Naples (both positive and negative surges)
+3. Computation of correlation coefficient and veering angle at ADCP locations
+4. Fit especially good for C10 (shallower)
+
+**Fig. 4**: Modelled SSE & currents vs. measurements
 
 * Validation of wave outputs &rarr; **Fig. 5**
 
 ### Impact of waves
 
-* Zones where difference in currents (with and without wave coupling) were the largest &rarr; **Fig. 6**
+Paragraph 1: Impact on currents
+1. Significant differences > .5 m/s
+2. Differences larger over reefs and between islands 
 
-* We identified the zones with the largest differences in currents between SLIM and SLIM+SWAN during Irma. We then determined potential regions of origin for passive drifters that would reach these zones with large differences in current at the moment of the landfall of the hurricane in the Florida Keys. We then released passive virtual particles advected by SLIM and SLIM+SWAN currents from these origination regions and computed the distance between the centers of mass of the two clouds of particles through time. &rarr; **Fig. 7**
+**Fig. 6** : Max differences in current velocities between SLIM and SLIM+SWAN
 
-* Take-homme messages
-  * The effect of waves on the currents is negligible before the passage of the hurricane. However, during the hurricane, it can produce differences of tens of km in a few hours in the position of particles transported by the currents.
-  * When waves taken into account, particles stay on the shelf
+Paragraph 2: Impact on transport
+1. Differences in trajectories of 10s of km
+2. Particles tend to remain on the shelf when wave-current interactions taken into account
+3. Importance of Stokes drift
+
+**Fig. 7**: Comparison of trajectories SLIM vs. SLIM+SWAN+Stokes
 
 
 ## Discussion and conclusion
