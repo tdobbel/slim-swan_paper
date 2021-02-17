@@ -54,10 +54,6 @@ Paragraph 1: To be developed
 
 **Fig 2.**: Model coupling (to be improved)
 
-## Comparison of trajectories
-
-Might have to rewrite this section
-
 ## Results
 
 ### Validation
@@ -92,9 +88,10 @@ Paragraph 1: Impact on currents
 **Fig. 6** : Max differences in current velocities between SLIM and SLIM+SWAN
 
 Paragraph 2: Impact on transport
-1. Differences in trajectories of 10s of km
-2. Particles tend to remain on the shelf when wave-current interactions taken into account
-3. Importance of Stokes drift
+1. Explanation of release regions of particles
+2. Differences in trajectories of 10s of km
+3. Particles tend to remain on the shelf when wave-current interactions taken into account
+4. Importance of Stokes drift
 
 **Fig. 7**: Comparison of trajectories SLIM vs. SLIM+SWAN+Stokes
 
