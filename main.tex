@@ -1,4 +1,41 @@
-\documentclass[11pt,a4paper]{article}
+%% 
+%% Copyright 2007-2020 Elsevier Ltd
+%% 
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+%% 
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.2 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+%% The list of all files belonging to the 'Elsarticle Bundle' is
+%% given in the file `manifest.txt'.
+%% 
+%% Template article for Elsevier's document class `elsarticle'
+%% with harvard style bibliographic references
+
+\documentclass[preprint,12pt,authoryear]{elsarticle}
+
+%% Use the option review to obtain double line spacing
+%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%% \documentclass[final,1p,times,authoryear]{elsarticle}
+% \documentclass[final,1p,times,twocolumn,authoryear]{elsarticle}
+%% \documentclass[final,3p,times,authoryear]{elsarticle}
+% \documentclass[final,3p,times,twocolumn,authoryear]{elsarticle}
+%% \documentclass[final,5p,times,authoryear]{elsarticle}
+%% \documentclass[final,5p,times,twocolumn,authoryear]{elsarticle}
+
+%% For including figures, graphicx.sty has been loaded in
+%% elsarticle.cls. If you prefer to use the old commands
+%% please give \usepackage{epsfig}
+
+%% The amssymb package provides various useful mathematical symbols
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -8,9 +45,7 @@
 \usepackage{makecell}
 \renewcommand{\cellalign}{cl}
 \renewcommand{\rmdefault}{phv}
-\usepackage{graphicx}
-\usepackage[round]{natbib}
-\usepackage{apalike}
+% \usepackage{graphicx}
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{5pt}
@@ -44,20 +79,136 @@
 \newcommand{\eg}{{\it e.g.}\ }
 \newcommand{\edit}[1]{\textcolor{orange}{#1}}
 \newcommand{\UV}{\mathbf{U}}
-\linenumbers
 
-\title{Estimating the impact of a major hurricane on transport processes}
-\author{Thomas Dobbelaere, Emmanuel Hanert}
+
+\journal{Ocean Modelling}
 
 \begin{document}
 
-\maketitle
-\begin{abstract}
-In most hydrodynamic model studies, currents and waves are simulated separately. This is especially true for the simulation of passive drifters, whose trajectories are often computed based solely on currents. Although this simplification holds for most situations, as the force exerted by waves on currents can be neglected in fair weather conditions, it may lead to significant errors during storm conditions, when currents are strongly influenced by wind-generated waves. In this study, we investigate current-wave interactions in heavy-wind conditions by coupling the unstructured-mesh hydrodynamic model SLIM with the wave model SWAN. We apply the coupled model in the Florida Reef Tract during Hurricane Irma (Sep. 2017) and show that it successfully reproduces both the observed wave behavior and storm surge during the hurricane. The modeled currents are then used to simulate the trajectories of passive drifters during the passage of the hurricane. Our results show that taking wave force into account induces variations of up 1 m/s in modelled currents on the continental shelf break as well as in the vicinity of reefs and islands. Wave-current interactions can therefore deflect the trajectories of drifting material by up to 10 km on the passage of the storm \textcolor{red}{Add something?}. These results strongly advocate for the inclusion of wave forces while studying transport processes (sediments, pollutants, larvae, etc.) in heavy-wind conditions. 
+\begin{frontmatter}
 
+%% Title, authors and addresses
+
+%% use the tnoteref command within \title for footnotes;
+%% use the tnotetext command for theassociated footnote;
+%% use the fnref command within \author or \affiliation for footnotes;
+%% use the fntext command for theassociated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for theassociated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%% \title{Title\tnoteref{label1}}
+%% \tnotetext[label1]{}
+%% \author{Name\corref{cor1}\fnref{label2}}
+%% \ead{email address}
+%% \ead[url]{home page}
+%% \fntext[label2]{}
+%% \cortext[cor1]{}
+%% \affiliation{organization={},
+%%            addressline={}, 
+%%            city={},
+%%            postcode={}, 
+%%            state={},
+%%            country={}}
+%% \fntext[label3]{}
+
+\title{Estimating the impact of a major hurricane on transport processes}
+
+%% use optional labels to link authors explicitly to addresses:
+%% \author[label1,label2]{}
+%% \affiliation[label1]{organization={},
+%%             addressline={},
+%%             city={},
+%%             postcode={},
+%%             state={},
+%%             country={}}
+%%
+%% \affiliation[label2]{organization={},
+%%             addressline={},
+%%             city={},
+%%             postcode={},
+%%             state={},
+%%             country={}}
+
+\author[eli]{Thomas Dobbelaere\corref{corr}}
+\ead{thomas.dobbelaere@uclouvain.be}
+\author[rsmas]{Milan Curcic}
+\author[cimas,aoml]{Matthieu le H\'enaff}
+\author[eli,immc]{Emmanuel Hanert}
+\cortext[corr]{Corresponding author}
+
+\affiliation[eli]{
+    organization={Eath and Life Institute (ELI), UCLouvain},
+    % addressline={}, 
+    city={Louvain-la-Neuve},
+    % postcode={1348}, 
+    % state={},
+    country={Belgium}
+}
+\affiliation[rsmas]{
+    organization={Rosenstiel School of Marine and Atmospheric Sciences (RSMAS), University of Miami},
+    % addressline={}, 
+    city={Coral Gables},
+    % postcode={1348}, 
+    state={Florida},
+    country={USA}
+}
+\affiliation[cimas]{
+    organization={Cooperative Institute for Marine and Atmospheric
+    Studies (CIMAS), University of Miami},
+    % addressline={}, 
+    city={Miami},
+    % postcode={1348}, 
+    state={Florida},
+    country={USA}
+}
+\affiliation[aoml]{
+    organization={Atlantic Oceanographic and Meteorological Laboratory
+    (AOML), NOAA},
+    % addressline={}, 
+    city={Miami},
+    % postcode={1348}, 
+    state={Florida},
+    country={USA}
+}
+\affiliation[immc]{
+    organization={Institute of Mechanics, Materials and Civil Engineering (IMMC), UCLouvain},
+    % addressline={}, 
+    city={Louvain-la-Neuve},
+    % postcode={1348}, 
+    % state={},
+    country={Belgium}
+}
+
+\begin{abstract}
+    In most hydrodynamic model studies, currents and waves are simulated separately. This is especially true for the simulation of passive drifters, whose trajectories are often computed based solely on currents. Although this simplification holds for most situations, as the force exerted by waves on currents can be neglected in fair weather conditions, it may lead to significant errors during storm conditions, when currents are strongly influenced by wind-generated waves. In this study, we investigate current-wave interactions in heavy-wind conditions by coupling the unstructured-mesh hydrodynamic model SLIM with the wave model SWAN. We apply the coupled model in the Florida Reef Tract during Hurricane Irma (Sep. 2017) and show that it successfully reproduces both the observed wave behavior and storm surge during the hurricane. The modeled currents are then used to simulate the trajectories of passive drifters during the passage of the hurricane. Our results show that taking wave force into account induces variations of up 1 m/s in modelled currents on the continental shelf break as well as in the vicinity of reefs and islands. Wave-current interactions can therefore deflect the trajectories of drifting material by up to 10 km on the passage of the storm \textcolor{red}{Add something?}. These results strongly advocate for the inclusion of wave forces while studying transport processes (sediments, pollutants, larvae, etc.) in heavy-wind conditions. 
 \end{abstract}
 
-% === INTRODUCTION === %
+%%Graphical abstract
+% \begin{graphicalabstract}
+% %\includegraphics{grabs}
+% \end{graphicalabstract}
+
+%%Research highlights
+% \begin{highlights}
+% \item Research highlight 1
+% \item Research highlight 2
+% \end{highlights}
+
+\begin{keyword}
+%% keywords here, in the form: keyword \sep keyword
+
+%% PACS codes here, in the form: \PACS code \sep code
+
+%% MSC codes here, in the form: \MSC code \sep code
+%% or \MSC[2008] code \sep code (2000 is the default)
+
+\end{keyword}
+
+\end{frontmatter}
+
+\linenumbers
+
 \section{Introduction}
 
 Wave-current interactions in coastal areas are of great importance for coastal engineering as they play a key role in sediment transport, morphological evolution and pollutant mixing \citep{bever2013simulating, li1998three}. However, these interactions are highly nonlinear and can vary significantly in space and time \citep{wu2011fvcom}. Wave-induced currents are generated by wave radiation gradients \citep{longuet1970longshore}, affecting water levels near shorelines and wave breaking points \citep{longuet1964radiation}, while changes in water levels and currents, in turn, affect the motion and evolution of the waves \citep{sikiric2013coupling}. Coupled wave-current models are therefore required to capture these complex interactions.
@@ -221,7 +372,7 @@ We compared the trajectories of particles originating from these regions and adv
 \end{figure}
 
 % === DISCUSSION === %
-\section{Discussion and conclusions}
+\section{Discussion}
 
 Impact of waves on coral connectivity
 
@@ -234,31 +385,14 @@ Ability of wave model to correctly capture gradient in significant wave height d
     \item Directional spreading of incident waves \citep{villas2020wave}
 \end{itemize}
 
-\section*{Conflict of Interest Statement}
-The authors declare that the research was conducted in the absence of any commercial or financial relationships that could be construed as a potential conflict of interest.
-
-\section*{Author Contributions}
-  
-\section*{Funding}
+\section{Conclusion}
 
 \section*{Acknowledgments}
 Computational resources were provided by the Consortium des \'Equipements de Calcul Intensif (\textsc{c\'eci}), funded by the \textsc{f.r.s.-fnrs} under Grant No. 2.5020.11. Thomas Dobbelaere is a PhD student supported by the Fund for Research training in Industry and Agriculture (\textsc{FRIA}/\textsc{FNRS}).
 
-\section*{Supplementary Material}
-The Supplementary Material for this article is attached to the submitted document.
-
-% === BIBLIOGRAPHY === %
-% \bibliographystyle{frontiersinSCNS_ENG_HUMS} 
-\bibliographystyle{apalike}
+\bibliographystyle{elsarticle-harv} 
 \bibliography{./biblio.bib}
 
-%%% Make sure to upload the bib file along with the tex file and PDF
-%%% Please see the test.bib file for some examples of references
-
-% \appendix
-% \section*{Appendix}
-% \renewcommand{\thesection}{A}
-% \setcounter{figure}{0}
-% \renewcommand{\thefigure}{\thesection\arabic{figure}}
-
 \end{document}
+
+\endinput
