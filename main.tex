@@ -427,17 +427,33 @@ Comparison of 'SLIM vs. SLIM+SWAN' with the other curves in Fig \ref{fig:traj}B 
 % === DISCUSSION === %
 \section{Discussion}
 
-Ability of wave model to correctly capture gradient in significant wave height due to current-waves interactions under tropical cyclones depends on:
+% SUMMARY
+We developed a coupled wave-current model to study the impact of waves on transport processes during Hurricane Irma. In order to accurately represent the wind and pressure profiles of te hurricane, we built hybrid fields by combining coarser ERA-5 data with high-resolution H*Wind data for the wind speed and idealized Holland profiles for the pressure. Comparing these hybrid profiles with field observations showed that they were better at reproducing the observed central depression of the hurricane as well as the peak in wind speed than ERA-5 data. Using these hybrid fields as forcings, our coupled model accurately reproduced the storm surge at NDBC buoy locations and produced currents and wave parameters in good agreement with field observations, especially on the WFS. The modelled currents and Stokes drift were then used to evaluate the impact of waves on the trajectory of passive drifters on the passage of the hurricane in the Florida Keys. Our results show that neglecting wave effects can induce differences of up to 1 m/s in modelled current velocities, leading to variations of more than 10 km in modelled trajectories. These differences in modelled trajectories were significantly larger and required more time to stabilize on the outer shelf. The impact of the Stokes drift dominates the effects of wave-current interactions through the radiation stress gradient, except at  the moment of the passage of the hurricane, when both contributions yield similar impacts. Finally, neglecting wave-current interactions when computing Stokes drift lead to variations of up to 2 km in modelled trajectories on the passage of the hurricane.
+
+\textbf{Paragraph on strong points of model: accuracy of storm surge and high resolution in the Keys}
 \begin{itemize}
-    \item Broad perspective $\Rightarrow$ not limited to FL
-    \item Mention search and rescue
-    \item However, ignoring waves in storm conditions could result in significant inaccuracies in modelled trajectories, as illustrated in the case of release region 2 in Fig. \ref{fig:traj}
+    \item This result is of interest as negative surges, although less studied, affect water exchanges between the estuaries and the coastal ocean and disturb the benthic ecosystems \citep{liu2020impacts}
+\end{itemize}
+
+\textbf{Paragraph on parameterizations in SWAN and instabilities related to Gulf Stream}
+\begin{itemize}
+    \item Ability of wave model to correctly capture gradient in significant wave height due to current-waves interactions under tropical cyclones
     \item Spatial (10km $\to$ 5km) and spectral (36 dir. $\to$ 48 dir.) resolution \citep{hegermiller2019wave}
     \item Directional spreading of incident waves \citep{villas2020wave}
-    \item This result is of interest as negative surges, although less studied, affect water exchanges between the estuaries and the coastal ocean and disturb the benthic ecosystems \citep{liu2020impacts}
     \item As model parameters were calibrated for the Northern Gulf of Mexico, observations are better reproduced at buoys located on the WFS, as illustrated for buoy 42036 + This good fit on the WFS is not surprising as the parameters used for wind energy input and whitecapping dissipation were based on the calibration performed by \cite{siadatmousavi2011evaluation} on the Northern Gulf of Mexico. Wind-induced wave growth might therefore be underestimated on the eastern shelf. Consequently, incident wave do not receive enough energy to grow after breaking on the bank boundary, leading to an underestimation of the significant wave height at the location of the buoys. Nonetheless, as this study focused on the wave produced by Irma, which made landfall on the western coasts of Florida, the use of parameterizations calibrated for the Gulf of Mexico seems reasonable.
+\end{itemize}
+
+\textbf{Paragraph on differences between inner and outer shelf}
+\begin{itemize}
     \item This difference between the inner and outer shelf can be explained by the sheltering of the inner shelf due to reefs and islands as well as wave breaking on the shelf break. The inner shelf hence experiences weaker waves and weaker currents, and hence also weaker and more localised transport. 
     \item Furthermore, as SLIM vs SLIM+SWAN+Stokes and SLIM vs. SLIM+Stokes-C show similar values on the inner shelf, this suggests that the combination of currents and Stokes drifts produces sufficiently accurate results on sheltered shallow areas such as the WFS
+    \item However, ignoring waves in storm conditions could result in significant inaccuracies in modelled trajectories, as illustrated in the case of release region 2 in Fig. \ref{fig:traj}
+    depends on.  
+\end{itemize}
+
+\begin{itemize}
+    \item Broad perspective $\Rightarrow$ not limited to FL, mention search and rescue
+    
 \end{itemize}
 
 \section{Conclusion}
