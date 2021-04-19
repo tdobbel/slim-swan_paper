@@ -1,103 +1,122 @@
 # SLIM+SWAN draft structure
 
-## Introduction
+## 1. Introduction
 
-Paragraph 1: wave-current interactions
-1. Wave-current interactions play an important role in coastal areas
-2. These interactions are complex and require a coupled model
-3. Wave-currents interactions are more important in storm conditions 
-4. Hurricane intensity and frequency in the GoM is expected to increase in the future &rArr; necessary to be able to model them accurately
+1. Tropical cyclones more and more frequent/intense &rArr; understanding wave-current interactions is important
 
-Paragraph 2: lagrangian models
-1. Lagrangian models are often used to model the transport of sediments, pollutants, larvae, etc.
-2. Most of these models don't takes wave-current interactions into account (only Stokes drift)
-3. This might generate significant errors under storm conditions &rArr; case study of Irma
+2. Wave-current interactions are complex &rArr; need coupled model
 
-Paragraph 3: Structure of the paper
+3. Complex topology in coastal areas &rArr; need unstructured model
 
-## Methods
+4.  Wave-current interactions rarely taken into account when studying transport of passive drifters
 
-## Study area and data
+5. Objective of study = assess impact of wave-current coupling when studying transport during Hurricane Irma + Structure of paper
 
-Paragraph 1: Presentation of South Florida
+## 2. Methods
 
-Paragraph 2: Presentation of tide gauges, moorings and buoys
+#### 2.1. Study area and observational data
 
-**Fig. 1**: Mesh + Hurricane track + bathymetry + measurement stations + zoom
+1. Description of South Florida +Tropical cyclones in Florida/Gulf of Mexico
 
-### Wind and atmospheric pressure for Hurricane Irma
+2. Description of observational data &rarr; [ **Fig. 1B** ]
+    - tide gauges &rarr; sea surface elevation
+    - ADCP &rarr; currents 
+    - buoys &rarr; waves
 
-Paragraph 1
-1. Some "fun facts" about Irma
-2. Wind speeds obtained from HWind field
-3. Construction of pressure field: ECMWF ERA-5 + Holland field using HURDAT 2
+#### 2.2. Wind and atmospheric pressure for Hurricane Irma
 
-### Hydrodynamic model
+1. Description of Irma and data used for wind and pressure
+    - Information about Irma
+    - Wind speed: HWind data set + combination with ERA-5 &rarr; [ **Fig. 2A** ]
+    - Atmospheric pressure: construction of Holland profile using HURDAT + combination with ERA-5 &rarr; [ **Fig. 2B** ]
 
-Paragraph 1
+#### 2.3. Hydrodynamic model
+
+1. Description of model equations + forcings  &rarr; [ eq. 1 ]
+
+2. Saturation of wind drag coefficient &rarr; [ eqs. 2-4 ]
+
+3. Description of mesh &rarr;  [ **Fig. 1A+C** ]
+
+#### 2.4. Wave model
+
 1. Description of model equations
-2. Saturation of wind drag coefficient
+    - Action balance equation &rarr; [ eq. 5 ]
+    - Spectral discretization
+    - Model parameterization
+    - Boundary conditions
 
-Paragraph 2: Mesh 
+2. Stokes drift: definition + equations &rarr; [ eq. 6 ]
 
-### Wave model
+#### 2.5. Coupled model
 
-Paragraph 1
-1. Description of model equations
-2. Paramaterizations of different energy sources and sinks
-3. Boundary conditions
-4. Stokes drift
+1. Mathematical description of coupling
+    - Mention vortex-force representation
 
-### Coupled model
+2. Numerical implementation of coupling &rarr; [ **Fig 3.** ]
 
-Paragraph 1: To be developed 
+#### 2.6. Quantifying the effect of wave-current interactions on transport
 
-**Fig 2.**: Model coupling (to be improved)
+1. Description of approach
+    - Initial positions of particles using backtracking &rarr; [ **Fig. 4** ]
+    - Description of different sets of currents
 
-## Results
+## 3. Results
 
-### Validation
+1. Plan of the section &rarr; [ **Table 1** ]
 
-Paragraph 1: Validation of atmospheric forcings
-1. Constructed pressure field better at reproducing storm depression than ECMWF
-2. Both HWind and ECMWF agree with observation but better timing/width of peak with HWind  
+#### 3.1. Model validation
 
-**Fig 3**: Reconstructed fields vs. measurements vs. ECMWF 
+1. Validation of atmospheric forcings &rarr; [ **Fig. 5**]
+    - Hybrid fields better reproduce field measurements
 
-Paragraph 2: Validation of hydro
-1. SSE agrees with observations and very good at reproducing storm surge
-2. Fit especially good at Naples (both positive and negative surges)
-3. Computation of correlation coefficient and veering angle at ADCP locations
-4. Fit especially good for C10 (shallower)
+2. Validation of hydrodynamic outputs
+    - Amplitude and timing of storm surge well reproduced &rarr; [ **Fig. 6** ]
+    - Modeled currents agree well with ADCP, especially in shallow region &rarr; [ **Fig. 7** ]
 
-**Fig. 4**: Modelled SSE & currents vs. measurements
+3. Validation of wave outputs
+    - Good agreement with observed SWH (better on WFS) &rarr; [ **Fig. 8** ]
 
-Paragraph 3: Wave validation
-1. Good agreement with observation although SWH is underestimated on the east shelf
-2. Better fit on the WFS explained by parameters used
-3. Use of parameters calibrated for GoM reasonable as we focus on WFS
+#### 3.2. Impact of waves on currents and transport
 
-**Fig. 4**: Modelled wave parameters vs. measurements
+1. Impact of wave-current interactions on current velocity &rarr; [ **Fig. 9** ]
+    - Differences of up to 1 m/s, with SLIM+SWAN > SLIM
+    - Differences stronger on shelf break and in region where wind stress stronger
 
-### Impact of waves
+2. Impact of waves on modeled trajectories &rarr; [ **Fig. 10A**]
+    - Differences > 5 km due to wave-current interactions
+    - Differences larger on outer shelf + require more time to stabilize
 
-Paragraph 1: Impact on currents
-1. Significant differences > .5 m/s
-2. Differences larger over reefs and between islands 
+3. Impact of Stokes drift &rarr;  [ **Fig. 10A+B** ]
+    - Stokes drift has larger effects than radiation-stress gradient (similar on outer shelf during the passage of Irma)
+    - Impact of radiation stress gradient alone only significant during passage of hurricane
+    - Difference between coupled and uncoupled Stokes drift negligible 
 
-**Fig. 6** : Max differences in current velocities between SLIM and SLIM+SWAN
+## Discussion
 
-Paragraph 2: Impact on transport
-1. Explanation of release regions of particles
-2. Differences in trajectories of 10s of km
-3. Particles tend to remain on the shelf when wave-current interactions taken into account
-4. Importance of Stokes drift
+1. Take home messages:
+    - SLIM+SWAN correctly reproduces both the hydrodynamics and wave dynamics during hurricane Irma but it requires good atmospheric forcings and good wave parametrization
+    - The additional wave stress can locally increase the current amplitude by about 1 m/s, which could be even more if it was not strongly dissipated by the coral reefs along the outer shelf that act as a very efficient coastal defense.
+    - Transport processes during heavy-wind events are influenced by the wave coupling but the Stokes drift dominates the wave-currents interactions. 
 
-**Fig. 7**: Comparison of trajectories SLIM vs. SLIM+SWAN+Stokes
+2. Model reproduced well storm surge
+    - Important as most damages during Irma caused by surge (+ high resolution of model) 
+    - Impact of negative surge
+
+3. Importance of wave parameterization and model resolution when modeling wave-current interactions during tropical cyclone
+    - Current-wave interaction in Gulf Stream
+    - Spectral and spatial resolution + boundary conditions
+    - Parameterization chosen for whitecapping and wind growth &rArr; better wave results on WFS
+
+4. Differences between inner and outer shelf due to sheltering + depth-induced wave breaking
+
+5. Stokes drift has larger impact than radiation stress gradient + coupled stokes drift pretty similar to uncoupled stokes drift &rArr; can neglect wave coupling in shallow sheltered regions in fair weather
 
 
-## Discussion and conclusion
+## Conclusion
 
-* Impact of Hurricane/waves on larval connectivity
+1. Summary of paper
 
-* Impact of wave parameterization/boundary conditions on significant wave height gradient
+2. Intrinsic limitations of model
+
+3. Conclusion: Wave coupling needs to be taken into account during heavy-wind events but not necessarily in milder conditions. While the wave-current interaction plays an important role and can lead to differences of up to..., the Stokes drift is about ... more intense and should thus be considered in priority (+ cheap approach as in OpenDrift ?)
