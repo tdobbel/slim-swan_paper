@@ -108,7 +108,9 @@
     - Spectral and spatial resolution + boundary conditions
     - Parameterization chosen for whitecapping and wind growth &rArr; better wave results on WFS
 
-4. Differences between inner and outer shelf due to sheltering + depth-induced wave breaking
+4. Impact of coral barrier
+    - Strong wave dissipation &rArr; large radiation stress gradient &rArr; large impact on current velocity
+    - Differences between inner and outer shelf due to sheltering
 
 5. Stokes drift has larger impact than radiation stress gradient + coupled stokes drift pretty similar to uncoupled stokes drift &rArr; can neglect wave coupling in shallow sheltered regions in fair weather
 
@@ -117,6 +119,8 @@
 
 1. Summary of paper
 
-2. Intrinsic limitations of model
+2. Limitations of model
+    - Wind-wave interactions
+    - Calibration of wave model parameters
 
-3. Conclusion: Wave coupling needs to be taken into account during heavy-wind events but not necessarily in milder conditions. While the wave-current interaction plays an important role and can lead to differences of up to..., the Stokes drift is about ... more intense and should thus be considered in priority (+ cheap approach as in OpenDrift ?)
+3. Conclusion (add cheap approach as in OpenDrift ?)
