@@ -43,10 +43,10 @@
 1. Description of model equations
     - Action balance equation &rarr; [ eq. 5 ]
     - Spectral discretization
-    - Model parameterization
-    - Boundary conditions
 
-2. Stokes drift: definition + equations &rarr; [ eq. 6 ]
+2. Model parameterization and boundary conditions 
+
+3. Stokes drift: definition + equations &rarr; [ eq. 6 ]
 
 #### 2.5. Coupled model
 
@@ -122,5 +122,8 @@
 2. Limitations of model
     - Wind-wave interactions
     - Calibration of wave model parameters
+    - 2D vs. 3D
 
-3. Conclusion (add cheap approach as in OpenDrift ?)
+3. Conclusion
+    - Main take home message
+    - Perspectives/positive final note
